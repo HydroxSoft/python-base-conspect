@@ -232,15 +232,32 @@ print('memoryview: ', list(buffer_view))
 # b - открытие файла в двоичном режиме.
 # t - открытие файла в текстовом режиме. (дефолт)
 # + - открытие файла на чтение и запись.
-# readlines() - считывает все строки файла в список.
-# readline() - считывает одну строку из файла.
-# write(content) - Записывает информацию в файл
-# tell() - Возвращает текущий указатель внутри файла.
-# seek(position, from_what=0) - Перемещает указатель в заданную позицию.
+# Создаем файл и записываем в него текст.
+file_one = open('data.txt', mode='w', encoding="utf-8")
+# write(content) - Записывает информацию в файл.
+text_to_write = """На этом занятии мы с вами научимся читать данные из файлов.
+Начнем со знакомства с функцией.
+Например, вот такая запись."""
+file_one.write(text_to_write)
+file_one.close()
+# open() - открывает файл для чтения.
 file_one = open('data.txt', encoding="utf-8")
 # Чтение файла полностью. В скобках можно указать первые символы.
 print('open: ', file_one.read())
-# Закрытие файла. Обязательно вызывать этот метод после окончания работы с файлом.
+# tell() - Возвращает текущий указатель внутри файла.
+print('tell:', file_one.tell())
+# seek(position, from_what=0) - Перемещает указатель в заданную позицию.
+file_one.seek(0)
+print('seek:', file_one.seek(0))
+# readline() - считывает одну строку из файла.
+first_line = file_one.readline()
+print('readline:', first_line.rstrip('\n'))
+# readlines() - считывает все строки файла в список.
+all_lines = file_one.readlines()
+print('readlines:')
+for line in all_lines:
+    print(line.strip())
+# Закрытие файла close(). Обязательно вызывать этот метод после окончания работы с файлом.
 file_one.close()
 # Функция ord() в Python, число символа Unicode, для символа x вернет число, из таблицы символов Unicode
 # представляющее его позицию. Функция ord() обратная chr().
